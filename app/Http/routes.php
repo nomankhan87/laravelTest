@@ -121,5 +121,11 @@ Route::get('testlaravel/public/test', function () {
 
 Route::get('testlaravel/public/test2', 'AdminConroller@getMaserBlade');
 
-Route::get('testlaravel/public/read', 'CrudBasicController@show');
+Route::get('testlaravel/public/crud/index', 'CrudBasicController@index');
+
+Route::get('testlaravel/public/crud/create', 'CrudBasicController@create');
+
+Route::get('testlaravel/public/crud/update/{id}', 'CrudBasicController@update');
+
+Route::get('testlaravel/public/crud/delete/{id}', 'CrudBasicController@destroy');
 

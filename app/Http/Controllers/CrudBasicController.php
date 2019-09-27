@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Customer;
 
 class CrudBasicController extends Controller
 {
@@ -17,6 +18,9 @@ class CrudBasicController extends Controller
     public function index()
     {
         //
+        $customer = Customer::all();
+        dd($customer);
+
     }
 
     /**
@@ -26,7 +30,19 @@ class CrudBasicController extends Controller
      */
     public function create()
     {
-        //
+        /*$customer = new Customer;
+        $customer->name = 'test';
+        $customer->address = 'test';
+        $customer->phone = '654';
+        $customer->save();*/
+
+        //mass assigment
+        $customer = new Customer([
+            'name'=>'test2',
+            'address'=>'test2',
+            'phone'=>'6554654'
+        ]);
+        $customer->save();
     }
 
     /**
@@ -71,7 +87,13 @@ class CrudBasicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $customer = Customer::find($id);
+         $customer->fill([
+            'name'=>'test update',
+            'address'=>'test update',
+            'phone'=>'6554654dsfdsf'
+        ]);
+        $customer->save();
     }
 
     /**
@@ -82,6 +104,19 @@ class CrudBasicController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //simple destroye
+        //Customer::destroy($id);
+
+        //want to delete but to save in  other table for history/trail
+        $customer = Customer::find($id);
+
+        //for example create trail model and table want to use this
+        // $trail = new Trail([
+        //     'username' => $customer->name;
+        // ]);
+
+        $customer->delete();
+
+
     }
 }
