@@ -134,5 +134,10 @@ class AdminConroller extends Controller
         ->with('data', "ttttt");
     }
 
+    public function formSubmit() #form-submit
+    {
+        echo "form method submit";
+    }
+
 
 }

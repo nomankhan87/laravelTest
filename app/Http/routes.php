@@ -56,7 +56,7 @@ Route::get('/testlaravel/public/queryLog', 'AdminConroller@dashboard');
 /*Route::get('/', [
     //call upper url through this "/"
     'as' => 'base-ul',
-	//'uses' => 'AdminConttroler@dashboard'
+	//'uses' => 'AdminConroller@dashboard'
 	function () {
 		echo route('user-number',[123]);
 	}
@@ -73,7 +73,7 @@ Route::group(['middleare' => 'web', 'namespace' => 'Admin', 'as' => 'adimn-'],
 	function() {
     Route::get('dashboard', [
         'as' => 'dashboard',
-        'uses' => 'AdminController@dashboard',
+        'uses' => 'AdminConroller@dashboard',
     ]);
 echo route('admin-dasboard');*/
 /*-----------------------------------------*/
@@ -83,7 +83,7 @@ echo route('admin-dasboard');*/
 	function() {
     Route::get('dashboard', [
         'as' => 'dashboard',
-        'uses' => 'AdminController@dashboard',
+        'uses' => 'AdminConroller@dashboard',
     ]);
 Route::get('/', function () {
 	echo route('dashboard');
@@ -99,9 +99,9 @@ Route::match(['put','patch'],'admin', function () {
 });*/
 
 
-//Route::controller('admin','AdminController')
+//Route::controller('admin','AdminConroller')
 /*in cotroller deifine thee functon wiet getDa
-class AdminController extends Controller{
+class AdminConroller extends Controller{
 	public function getDasboard(){echo 'test';}
 }
 */
@@ -129,3 +129,12 @@ Route::get('testlaravel/public/crud/update/{id}', 'CrudBasicController@update');
 
 Route::get('testlaravel/public/crud/delete/{id}', 'CrudBasicController@destroy');
 
+
+Route::get('testlaravel/public/form', function () {
+    return view('contact-child');
+});
+
+Route::post('testlaravel/public/form-submit', [
+    'uses' => 'AdminConroller@formSubmit',
+    'as' => 'f.submit'
+    ]);
